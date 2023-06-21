@@ -1,4 +1,5 @@
 const Hapi = require('@hapi/hapi');
+const routes = require('./routes');
 
 const HOSTNAME = 'localhost';
 const PORT = 3300;
@@ -23,23 +24,7 @@ const init = async () => {
 	});
 
 	// pages route
-	server.route([
-		{
-			path: '/',
-			method: 'GET',
-
-			handler: (req, h) => {
-				return '<h1> Welcome </h1>';
-			},
-		},
-		{
-			path: '/dashboard',
-			method: 'GET',
-			handler: (req, h) => {
-				return '<h1> Dashboard </h1>';
-			},
-		},
-	]);
+	server.route(routes);
 
 	// api endpoints
 	server.route([
@@ -51,6 +36,7 @@ const init = async () => {
 				return userData;
 			},
 		},
+
 		{
 			path: '/api/authors',
 			method: 'GET',

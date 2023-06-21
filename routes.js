@@ -28,6 +28,14 @@ const routes = [
 		},
 	},
 	{
+		path: '/hello/{name?}',
+		method: 'GET',
+		handler: (req, h) => {
+			const { name = 'stranger' } = req.params;
+			return `<h1>Hello ${name}</h1>`;
+		},
+	},
+	{
 		path: '/{any*}', //wildcard route
 		method: '*',
 		handler: (req, h) => {

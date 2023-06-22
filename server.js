@@ -26,27 +26,6 @@ const init = async () => {
 	// pages route
 	server.route(routes);
 
-	// api endpoints
-	server.route([
-		{
-			path: '/api/userData',
-			method: 'GET',
-
-			handler: (req, h) => {
-				return userData;
-			},
-		},
-
-		{
-			path: '/api/authors',
-			method: 'GET',
-
-			handler: (req, h) => {
-				return bookAuthors;
-			},
-		},
-	]);
-
 	await server.start();
 	console.log(`Server is up on ${server.info.uri}`);
 };

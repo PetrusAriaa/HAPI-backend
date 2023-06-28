@@ -40,11 +40,50 @@ const handler = {
   handleNoteGet: (req, h)=> {
     const res = h.response({
       status: 'success',
-      data: notes,
+      data: {notes},
     });
     res.code(200);
     return res;
   },
+
+  handleNoteGetByIde: (req, h)=> {
+    const noteId = req.params.id;
+    const note = notes.filter((n)=> n.id === noteId)[0];
+
+    if (note !== undefined) {
+      return {
+        status: 'success',
+        data: {note},
+      };
+    }
+
+    const res = h.response({
+      status: 'failed',
+      message: 'Note not found!',
+    });
+    res.code(404);
+    return res;
+  },
+
+  deleteNote: (req, h) => {
+    const noteId = req.params.id;
+    const noteIndex = notes.findIndex((item) => item.id === noteId);
+
+    if (noteIndex !== -1) {
+      notes.splice(noteIndex, 1);
+      return {
+        status: 'success',
+        message: 'Note Deleted',
+      };
+    }
+    const res = h.response({
+      status: 'failed',
+      message: 'Note not found',
+    });
+    res.code(404);
+    return res;
+  },
+
 };
 
 module.exports = handler;

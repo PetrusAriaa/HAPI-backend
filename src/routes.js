@@ -11,6 +11,17 @@ const routes = [
     method: 'GET',
     handler: handler.handleNoteGet,
   },
+  {
+    path: '/notes/{id}',
+    method: 'GET',
+    handler: handler.handleNoteGetByIde,
+  },
+  {
+    path: '/notes/{id}',
+    method: 'DELETE',
+    handler: handler.deleteNote,
+
+  },
 ];
 
 module.exports = routes;

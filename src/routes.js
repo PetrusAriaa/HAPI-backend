@@ -23,10 +23,10 @@ const routes = [
 
   },
   {
-    path:'/notes/{id}',
+    path: '/notes/{id}',
     method: 'PUT',
     handler: handler.updateNote,
-  }
+  },
 ];
 
 module.exports = routes;

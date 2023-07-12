@@ -84,6 +84,41 @@ const handler = {
     return res;
   },
 
+  updateNote: (req, h) => {
+    const noteId = req.params.id;
+    const {title, tags, body} = req.payload;
+
+    const updatedAt = new Date().toISOString()
+
+    const index = notes.findIndex((item) => item.id === noteId)
+
+    if (index !== -1){
+      notes[index] = {
+        ...notes[index],
+        title,
+        tags,
+        body,
+        updatedAt,
+      }
+
+      const res = h.response({
+        status:'success',
+        message: 'Note updated',
+      })
+
+      res.code(200);
+      return res;
+    }
+
+    const res = h.response({
+      status: 'failed',
+      message: 'Note not found',
+      });
+    res.code(404);
+
+    return res;
+  }
+
 };
 
 module.exports = handler;

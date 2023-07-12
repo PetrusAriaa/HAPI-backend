@@ -22,6 +22,11 @@ const routes = [
     handler: handler.deleteNote,
 
   },
+  {
+    path:'/notes/{id}',
+    method: 'PUT',
+    handler: handler.updateNote,
+  }
 ];
 
 module.exports = routes;
